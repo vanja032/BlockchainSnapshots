@@ -1,0 +1,6 @@
+{
+    "snapshot_path": "/home/eosio-node/eosio.setup/master.node/blockchain/data/snapshots",
+    "snap_dir": "snaps",
+    "snapshot_file": "snapshot_file",
+    "snapshot_file_extension": ".bin"
+}
