@@ -17,6 +17,7 @@ snap_location = configs['snapshot_path']
 snap_dir = configs['snap_dir']
 snap_file = configs['snapshot_file']
 snap_file_ext = configs['snapshot_file_extension']
+webpage_address = configs['snapshot_file_extension']
 
 favicon = 'favicon.png'
 file_name_ext = ""
@@ -29,13 +30,19 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @cross_origin()
 def ProvideSnapshot():
     global file_name_ext
-    return render_template('index.html', snapshot_file_download = '/snapshot', snapshot_url = f'--no-check-certificate <snapshot webpage address> -o {snap_file}_{file_name_ext}{snap_file_ext}', favicon_url = f'/{favicon}')
+    return render_template('index.html', snapshot_file_download = '/snapshot', snapshot_url = f'--no-check-certificate {webpage_address} -o', snapshot_out = f'{snap_file}_{file_name_ext}{snap_file_ext}', favicon_url = f'/{favicon}')
     #return "<h1>Hello!</h1>"
 
 @app.route('/snapshot', methods=['GET'])
 @cross_origin()
 def DownloadSnapshot():
     return send_file(f'{snap_dir}/{snap_file}_{file_name_ext}{snap_file_ext}', as_attachment=True)
+
+@app.route(f'/version', methods=['GET'])
+@cross_origin()
+def ReturnSnapshotVersion():
+    global file_name_ext
+    return f'{snap_file}_{file_name_ext}{snap_file_ext}'
 
 @app.route(f'/{favicon}', methods=['GET'])
 @cross_origin()
