@@ -9,5 +9,5 @@ $(document).ready(function(){
                 });
             }
         });
-    }, 3000); // Every 30 seconds retrieve current snapshot name
+    }, 30000); // Every 30 seconds retrieve current snapshot name
 });
