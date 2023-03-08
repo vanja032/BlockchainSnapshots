@@ -73,15 +73,23 @@ def ExportSnapshot():
         os.system('rm -rf ' + snap_dir + '/*')
         shutil.copy(snap_location + '/' + os.listdir(snap_location)[0], f'{snap_dir}/{snap_file}_{file_name_ext}{snap_file_ext}')
         print("\nExporting snapshot finished.\n" + str(datetime.now()))
-        time.sleep(600) # every 10 minutes export a snapshot
+        #time.sleep(600) # every 10 minutes export a snapshot
     except Exception as ex:
         print(ex)
-    ExportSnapshot()
+    #ExportSnapshot()
+   
+def CallExport():
+    while True:
+        try:
+            ExportSnapshot()
+            time.sleep(600) # Every 10 minutes export 60s * 10mins
+        except Exception as ex:
+            print(ex)
 
 if __name__ == '__main__':
     try:
         #app.run(host='0.0.0.0', port=80)
-        thread = threading.Thread(target=ExportSnapshot, name="Exporting snapshots")
+        thread = threading.Thread(target=CallExport, name="Exporting snapshots")
         thread.setDaemon(True) # Stop this thread if the main thread is stopped
         thread.start()
         #serve(app, host="0.0.0.0", port=443, url_scheme='https')
