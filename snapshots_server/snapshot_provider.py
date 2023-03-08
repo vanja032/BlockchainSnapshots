@@ -34,7 +34,7 @@ def ProvideSnapshot():
         #global file_name_ext
         global snapshot
         #return render_template('index.html', snapshot_file_download = '/snapshot', snapshot_url = f'--no-check-certificate {webpage_address}/snapshot -o', snapshot_out = f'{snap_file}_{file_name_ext}{snap_file_ext}', favicon_url = f'/{favicon}')
-        return render_template('index.html', snapshot_file_download = '/snapshot', snapshot_url = f'--no-check-certificate {webpage_address}/snapshot -o', snapshot_out = f'{snapshot}', favicon_url = f'/{favicon}')
+        return render_template('index.html', snapshot_file_download = '/snapshot', command = 'curl -k', snapshot_url = f'{webpage_address}/snapshot -o', snapshot_out = f'{snapshot}', favicon_url = f'/{favicon}')
         #return "<h1>Hello!</h1>"
     except Exception as ex:
         print(ex)
@@ -45,8 +45,11 @@ def DownloadSnapshot():
     try:
         #global file_name_ext
         global snapshot
+        with open(f'{snap_dir}/{snapshot}') as file:
+            file.seek(0)
+            return send_file(file.name, as_attachment=True)
         #return send_file(f'{snap_dir}/{snap_file}_{file_name_ext}{snap_file_ext}', as_attachment=True)
-        return send_file(f'{snap_dir}/{snapshot}', as_attachment=True)
+        #return send_file(f'{snap_dir}/{snapshot}', as_attachment=True)
     except Exception as ex:
         print(ex)
 
@@ -105,6 +108,6 @@ if __name__ == '__main__':
         thread.setDaemon(True) # Stop this thread if the main thread is stopped
         thread.start()
         #serve(app, host="0.0.0.0", port=443, url_scheme='https')
-        app.run(host='0.0.0.0', port=443, ssl_context=("<path to the certificate>/cert.pem", "<path to the certificate>/privkey.pem"))
+        app.run(host='0.0.0.0', port=443, ssl_context=("<path to the certificate>/cert.pem", "<path to the certificate>/privkey.pem"), threaded=True)
     except Exception as ex:
         print(ex)
