@@ -17,7 +17,7 @@ snap_location = configs['snapshot_path']
 snap_dir = configs['snap_dir']
 snap_file = configs['snapshot_file']
 snap_file_ext = configs['snapshot_file_extension']
-webpage_address = configs['snapshot_file_extension']
+webpage_address = configs['snapshot_webpage']
 
 favicon = 'favicon.png'
 file_name_ext = ""
