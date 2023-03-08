@@ -30,7 +30,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @cross_origin()
 def ProvideSnapshot():
     global file_name_ext
-    return render_template('index.html', snapshot_file_download = '/snapshot', snapshot_url = f'--no-check-certificate {webpage_address} -o', snapshot_out = f'{snap_file}_{file_name_ext}{snap_file_ext}', favicon_url = f'/{favicon}')
+    return render_template('index.html', snapshot_file_download = '/snapshot', snapshot_url = f'--no-check-certificate {webpage_address}/snapshot -o', snapshot_out = f'{snap_file}_{file_name_ext}{snap_file_ext}', favicon_url = f'/{favicon}')
     #return "<h1>Hello!</h1>"
 
 @app.route('/snapshot', methods=['GET'])
