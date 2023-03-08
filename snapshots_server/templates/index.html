@@ -8,6 +8,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    
+    <!-- Load JQuery library and functions for the page -->
+    <script src="{{url_for('static', filename='jquery_min.js')}}"></script>
+    <script src="{{url_for('static', filename='functions.js')}}"></script>
+    
     <title>Eosio Snapshots</title>
     <link rel="icon" type="image/x-icon" href="{{favicon_url}}">
   </head>
@@ -31,7 +36,7 @@
             <p class="text-monospace">You can use this command to generate your own snapshots, but we recommend using official</p>
 
             <p class="text-monospace">Eosio snapshots provided by Eosio dev team. You can find our snapshots here: <a href="{{snapshot_file_download}}">Snapshot</a></p>
-            <p class="text-monospace">or you can use <b>wget {{snapshot_url}}</b></p>
+            <p class="text-monospace">or you can use <b>wget {{snapshot_url}} <span class="snapshot_out_file">{{snapshot_out}}</span></b></p>
         </div>
     
         <div class="contaeosr p-5">
@@ -51,7 +56,7 @@
             <br>
 
             <p class="text-monospace">The next step is to download the official Eosio snapshots from <a href="{{snapshot_file_download}}">Snapshot</a>. </p>
-            <p class="text-monospace">or you can use <b>wget {{snapshot_url}}</b></p>
+            <p class="text-monospace">or you can use <b>wget {{snapshot_url}} <span class="snapshot_out_file">{{snapshot_out}}</span></b></p>
 
             <br>
 
@@ -131,7 +136,7 @@ echo $! > $DATADIR"/eosd.pid"
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
